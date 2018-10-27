@@ -1,21 +1,28 @@
+/* global describe it */
 const assert = require('assert');
+
 Object.freeze(assert);
 const sumOfOther = require('./sumOfOther.js');
 
+describe('SumOfOther', () => {
+  it('sumOfOther([2, 3, 4, 1])', () => {
+    assert.deepEqual(sumOfOther([2, 3, 4, 1]), [8, 7, 6, 9]);
+  });
+});
+
 
 it('sumOfOther([2, 3, 4, 1])', () => {
-  assert.deepEqual(sumOfOther([2, 3, 4, 1]), [8,7,6,9]);
+  assert.deepEqual(sumOfOther([2, 3, 4, 1]), [8, 7, 6, 9]);
 });
 
 it('sumOfOther([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])', () => {
-  assert.deepEqual(sumOfOther([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [54,53,52,51,50,49,48,47,46,45]);
+  assert.deepEqual(sumOfOther([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    [54, 53, 52, 51, 50, 49, 48, 47, 46, 45]);
 });
 
 it('sumOfOther([])', () => {
   assert.deepEqual(sumOfOther([]), []);
 });
-
-
 
 
 const make = require('./make.js');
@@ -38,15 +45,22 @@ it('make(15)(34, 21, 666)(41)(sum)', () => {
 });
 
 
-
 const recursion = require('./recursion.js');
 
-let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
-let tree2 = {"value":10,"left":{"value":4,"left":{"value":3},"right":{"value":5}},"right":{"value":20,"left":{"value":15}}};
+const tree = {
+  value: 100,
+  left: { value: 90, left: { value: 70 }, right: { value: 99 } },
+  right: { value: 120, left: { value: 110 }, right: { value: 130 } },
+};
+const tree2 = {
+  value: 10,
+  left: { value: 4, left: { value: 3 }, right: { value: 5 } },
+  right: { value: 20, left: { value: 15 } },
+};
 
 
 it('[[100], [90, 120], [70,99,110,130]]', () => {
-  assert.deepEqual(recursion(tree), [[100], [90, 120], [70,99,110,130]]);
+  assert.deepEqual(recursion(tree), [[100], [90, 120], [70, 99, 110, 130]]);
 });
 
 it('[[10], [4, 20], [3, 5, 15]]', () => {
