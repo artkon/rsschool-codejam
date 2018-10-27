@@ -1,22 +1,18 @@
-function make(...arg1){
+module.exports = function make(...arg1) {
+  function f(...arg2) {
+    if (typeof arg2[arg2.length - 1] === 'function') {
+      const func = arg2[arg2.length - 1];
 
-  function f(...arg2){
-    if(typeof arg2[arg2.length - 1] != 'function'){
-      
-      return f.bind(null, ...arg2);
+      const args = arg1.concat(arg2).slice(0, -1);
 
-    } else {
-      let func = arg2[arg2.length - 1];
-
-      arg2 = arg1.concat(arg2).slice(0,-1);
-
-      let res = arg2[0];
-      for(let i = 1; i < arg2.length ; i++){
-        res = func(res, arg2[i]);
+      let res = args[0];
+      for (let i = 1; i < args.length; i += 1) {
+        res = func(res, args[i]);
       }
 
       return res;
     }
+    return f.bind(null, ...arg2);
   }
   return f;
-}
+};
